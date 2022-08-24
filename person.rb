@@ -1,4 +1,5 @@
 require './decorators'
+require './rental'
 
 class Person < Nameable
   def initialize(age, name = 'Unknown', parent_permission: true)
@@ -11,6 +12,7 @@ class Person < Nameable
   end
 
   attr_accessor :name, :age
+  attr_accessor :rental
   attr_reader :id
 
   def can_use_services?
