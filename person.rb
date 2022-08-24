@@ -11,8 +11,7 @@ class Person < Nameable
     @rentals = []
   end
 
-  attr_accessor :name, :age
-  attr_accessor :rental
+  attr_accessor :name, :age, :rental
   attr_reader :id
 
   def can_use_services?
