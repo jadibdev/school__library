@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 require './app'
+require './student'
+require './teacher'
 
 app = App.new
 puts 'Please choose an option by entering a number:'
@@ -57,7 +59,9 @@ while option
   end
 
   if option.to_i == 3
-    app.create_a_person
+    puts 'Do you want to create a student (1) or a teacher (2)? [Input the number]:'
+    choice = gets.chomp
+    app.create_a_person(choice)
     puts ''
     puts 'Please choose an option by entering a number:'
     puts '1 - List all books'
@@ -72,7 +76,7 @@ while option
 
   if option.to_i == 5
     app.create_rental
-    puts 'rental created'
+
     puts 'Please choose an option by entering a number:'
     puts '1 - List all books'
     puts '2 - List all people'

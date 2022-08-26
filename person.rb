@@ -2,9 +2,8 @@ require './decorators'
 require './rental'
 
 class Person < Nameable
-  def initialize(age, name, id, parent_permission: true)
+  def initialize(age, name, parent_permission)
     super()
-    @id = id
     @name = name
     @age = age
     @parent_permission = parent_permission
