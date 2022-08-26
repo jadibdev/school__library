@@ -61,7 +61,14 @@ while option
   if option.to_i == 3
     puts 'Do you want to create a student (1) or a teacher (2)? [Input the number]:'
     choice = gets.chomp
-    app.create_a_person(choice)
+    # if choice == '1'
+    #   app.create_a_student
+    # end
+    # if choice == '2'
+    #   app.create_a_teacher
+    # end
+
+    choice == '1' ? app.create_a_student : app.create_a_teacher
     puts ''
     puts 'Please choose an option by entering a number:'
     puts '1 - List all books'
@@ -76,7 +83,7 @@ while option
 
   if option.to_i == 5
     app.create_rental
-
+    puts 'rental created'
     puts 'Please choose an option by entering a number:'
     puts '1 - List all books'
     puts '2 - List all people'
