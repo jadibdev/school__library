@@ -3,7 +3,7 @@ require './person'
 require 'date'
 
 class App
-  def initialize()
+  def ()
     @books = []
     @people = []
     @rentals = []
