@@ -48,31 +48,6 @@ class App
     @people.push(teacher)
   end
 
-  # def create_a_person(type)
-  #   if type == '1'
-  #     puts 'Enter student id'
-  #     id = gets.chomp
-  #     puts 'Enter student age: '
-  #     age = gets.chomp
-  #     puts 'Enter student name'
-  #     name = gets.chomp
-  #     puts 'Enter parent permission: true or false'
-  #     parent_permission = gets.chomp
-  #     student = Student.new(id, age, name, parent_permission)
-  #     @people.push(student)
-  #   end
-  #   if type == '2'
-  #     puts 'Enter teacher id'
-  #     id = gets.chomp
-  #     puts 'Enter teacher age: '
-  #     age = gets.chomp
-  #     puts 'Enter teacher name'
-  #     name = gets.chomp
-  #     teacher = Teacher.new(id, age, name)
-  #     @people.push(teacher)
-  #   end
-  # end
-
   def list_all_people
     puts 'There are currently no people! press 3 to create a person' if @people.empty?
     @people.map.with_index { |person, index| print "#{index}) Name: #{person.name} - Age: #{person.age}" }
