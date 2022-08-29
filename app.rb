@@ -81,18 +81,18 @@ class App
     book = ''
     person = ''
     date = DateTime.now
+
     unless @books.empty?
       list_all_books
-      puts 'choose a book from above'
-      book = gets.chomp
+      book = get_user_input("choose a book from above", book)
     end
+
     unless @people.empty?
       list_all_people
-      puts 'choose a person from above'
-      person = gets.chomp
+      person = get_user_input("choose a person from above", person)
     end
-    rental = Rental.new(date, book, person)
-    @rentals.push(rental)
+    
+    create_object(Rental, @rentals, date, book, person)
   end
 
   def list_all_rentals(id)

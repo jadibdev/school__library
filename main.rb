@@ -3,7 +3,8 @@ class Main_app
   puts 'Welcome to School Library App!'
   def self.options
     puts "\n"
-    puts 'Please choose an option by entering a number'
+    puts 'Please choose an option by entering a
+     number'
     puts "\n"
     # Menu options
     @menu = {
