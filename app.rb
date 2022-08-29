@@ -1,6 +1,9 @@
 require './book'
 require './person'
+require './teacher'
+require './student'
 require 'date'
+
 
 class App
   def initialize()
@@ -36,27 +39,20 @@ class App
   end
 
   def create_a_student
-    puts 'Enter student id'
-    id = gets.chomp
-    puts 'Enter student age: '
-    age = gets.chomp
-    puts 'Enter student name'
-    name = gets.chomp
-    puts 'Enter parent permission: true or false'
-    parent_permission = gets.chomp
-    student = Student.new(id, age, name, parent_permission)
-    @people.push(student)
+    puts 'Create a student'
+    id = get_user_input('Enter student id', id)
+    age = get_user_input('Enter student age', age)
+    name = get_user_input('Enter student name', name) 
+    parent_permission = get_user_input('Enter parent permission: true or false', parent_permission)
+    create_object(Student, @people, id, age, name, parent_permission)
   end
 
   def create_a_teacher
-    puts 'Enter teacher id'
-    id = gets.chomp
-    puts 'Enter teacher age: '
-    age = gets.chomp
-    puts 'Enter teacher name'
-    name = gets.chomp
-    teacher = Teacher.new(id, age, name)
-    @people.push(teacher)
+    puts "Create a tacher"
+    id = get_user_input('Enter teacher id', id)
+    age = get_user_input('Enter teacher age', age)
+    name = get_user_input('Enter teacher name', name)
+    create_object(Teacher, @people, id, age, name)
   end
 
   def create_a_person
