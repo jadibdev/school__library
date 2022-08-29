@@ -1,6 +1,9 @@
 require './book'
 require './person'
+require './teacher'
+require './student'
 require 'date'
+
 
 class App
   def initialize()
@@ -9,14 +12,25 @@ class App
     @rentals = []
   end
 
+  # get user input method
+  def get_user_input(text, field)
+    puts text
+    field = gets.chomp
+    return field
+  end
+
+  # create class object method
+  def create_object(class_Name, store, *args)
+    class_Name.new(*args)
+    store.push(class_Name.new(*args))
+  end
+
+  # create book method
   def create_a_book
     puts 'Create a new book'
-    puts 'Enter a new title'
-    title = gets.chomp
-    puts 'Enter an author'
-    author = gets.chomp
-    book = Book.new(title, author)
-    @books.push(book)
+    title = get_user_input("Enter a new title", title)
+    author = get_user_input("Enter an author", author)
+    create_object(Book, @books, title, author)
   end
 
   def list_all_books
@@ -25,79 +39,67 @@ class App
   end
 
   def create_a_student
-    puts 'Enter student id'
-    id = gets.chomp
-    puts 'Enter student age: '
-    age = gets.chomp
-    puts 'Enter student name'
-    name = gets.chomp
-    puts 'Enter parent permission: true or false'
-    parent_permission = gets.chomp
-    student = Student.new(id, age, name, parent_permission)
-    @people.push(student)
+    puts 'Create a student'
+    id = get_user_input('Enter student id', id)
+    age = get_user_input('Enter student age', age)
+    name = get_user_input('Enter student name', name) 
+    parent_permission = get_user_input('Enter parent permission: true or false', parent_permission)
+    create_object(Student, @people, id, age, name, parent_permission)
   end
 
   def create_a_teacher
-    puts 'Enter teacher id'
-    id = gets.chomp
-    puts 'Enter teacher age: '
-    age = gets.chomp
-    puts 'Enter teacher name'
-    name = gets.chomp
-    teacher = Teacher.new(id, age, name)
-    @people.push(teacher)
+    puts "Create a tacher"
+    id = get_user_input('Enter teacher id', id)
+    age = get_user_input('Enter teacher age', age)
+    name = get_user_input('Enter teacher name', name)
+    create_object(Teacher, @people, id, age, name)
   end
 
-  # def create_a_person(type)
-  #   if type == '1'
-  #     puts 'Enter student id'
-  #     id = gets.chomp
-  #     puts 'Enter student age: '
-  #     age = gets.chomp
-  #     puts 'Enter student name'
-  #     name = gets.chomp
-  #     puts 'Enter parent permission: true or false'
-  #     parent_permission = gets.chomp
-  #     student = Student.new(id, age, name, parent_permission)
-  #     @people.push(student)
-  #   end
-  #   if type == '2'
-  #     puts 'Enter teacher id'
-  #     id = gets.chomp
-  #     puts 'Enter teacher age: '
-  #     age = gets.chomp
-  #     puts 'Enter teacher name'
-  #     name = gets.chomp
-  #     teacher = Teacher.new(id, age, name)
-  #     @people.push(teacher)
-  #   end
-  # end
+  def create_a_person
+    puts "Do you want to create a student (1) or a teacher (2)? [Input the number]:\n"
+    choice = gets.chomp
+    case choice
+    when '1'
+      create_a_student
+    when '2'
+      create_a_teacher
+    else
+      puts 'Invalid option [1 or 2]'
+    end
+  end
 
   def list_all_people
     puts 'There are currently no people! press 3 to create a person' if @people.empty?
     @people.map.with_index { |person, index| print "#{index}) Name: #{person.name} - Age: #{person.age}" }
   end
 
+  def is_empty(store)
+    if store.empty?
+      false
+    end
+    true
+  end
+
   def create_rental
-    if @books.empty? && @people.empty?
+    if is_empty(@books) && is_empty(@people)
       puts 'There are no books or people'
       puts ''
     end
     book = ''
     person = ''
     date = DateTime.now
-    unless @books.empty?
+
+    unless !is_empty(@books)
       list_all_books
-      puts 'choose a book from above'
-      book = gets.chomp
+      book = get_user_input("choose a book from above", book)
     end
-    unless @people.empty?
+
+    unless !is_empty(@people)
       list_all_people
-      puts 'choose a person from above'
-      person = gets.chomp
+      person = get_user_input("choose a person from above", person)
     end
-    rental = Rental.new(date, book, person)
-    @rentals.push(rental)
+
+    create_object(Rental, @rentals, date, book, person)
   end
 
   def list_all_rentals(id)

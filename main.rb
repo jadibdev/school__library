@@ -1,115 +1,65 @@
-#!/usr/bin/env ruby
 require './app'
-require './student'
-require './teacher'
+class Main_app
+  puts 'Welcome to School Library App!'
+  def self.options
+    puts "\n"
+    puts 'Please choose an option by entering a
+     number'
+    puts "\n"
+    # Menu options
+    @menu = {
+      '1' => 'List all books',
+      '2' => 'List all people',
+      '3' => 'Create a person',
+      '4' => 'Create a book',
+      '5' => 'Create a rental',
+      '6' => "List all rentals for a given person\'s id",
+      '7' => 'Exit'
+    }
 
-app = App.new
-puts 'Please choose an option by entering a number:'
-puts '1 - List all books'
-puts '2 - List all people'
-puts '3 - Create a person'
-puts '4 - Create a book'
-puts '5 - Create a rental'
-puts '6 - List all rentals for a given person id'
-puts '7 - Exit'
-
-option = gets.chomp
-
-while option
-  if option.to_i == 4
-    app.create_a_book
-
-    puts 'Please choose an option by entering a number:'
-    puts '1 - List all books'
-    puts '2 - List all people'
-    puts '3 - Create a person'
-    puts '4 - Create a book'
-    puts '5 - Create a rental'
-    puts '6 - List all rentals for a given person id'
-    puts '7 - Exit'
-    option = gets.chomp
+    # Display all menu options
+    @menu.each do |key, menu|
+      puts "#{key} - #{menu}"
+    end
+    # Get user selected option
+    Integer(gets.chomp)
   end
+  # Instatiate App class for a given option
+  app = App.new
 
-  if option.to_i == 1
-    app.list_all_books
-    puts ''
-    puts 'Please choose an option by entering a number:'
-    puts '1 - List all books'
-    puts '2 - List all people'
-    puts '3 - Create a person'
-    puts '4 - Create a book'
-    puts '5 - Create a rental'
-    puts '6 - List all rentals for a given person id'
-    puts '7 - Exit'
-    option = gets.chomp
+  loop do
+    case options
+    when 1
+      app.list_all_books
+    when 2
+      app.list_all_people
+    when 3
+      app.create_a_person
+    when 4
+      app.create_a_book
+    when 5
+      app.create_rental
+    when 6
+      puts 'Enter a person id'
+      id = gets.chomp
+      app.list_all_rentals(id)
+    when 7
+      puts "\n"
+      puts 'Thank you for using this app!'
+      puts "\n"
+      exit
+    else
+      puts "\n"
+      puts 'Invalid option.'
+      puts 'Enter a number between 1 and 7'
+    end
   end
-
-  if option.to_i == 2
-    app.list_all_people
-    puts ''
-    puts 'Please choose an option by entering a number:'
-    puts '1 - List all books'
-    puts '2 - List all people'
-    puts '3 - Create a person'
-    puts '4 - Create a book'
-    puts '5 - Create a rental'
-    puts '6 - List all rentals for a given person id'
-    puts '7 - Exit'
-    option = gets.chomp
-  end
-
-  if option.to_i == 3
-    puts 'Do you want to create a student (1) or a teacher (2)? [Input the number]:'
-    choice = gets.chomp
-    # if choice == '1'
-    #   app.create_a_student
-    # end
-    # if choice == '2'
-    #   app.create_a_teacher
-    # end
-
-    choice == '1' ? app.create_a_student : app.create_a_teacher
-    puts ''
-    puts 'Please choose an option by entering a number:'
-    puts '1 - List all books'
-    puts '2 - List all people'
-    puts '3 - Create a person'
-    puts '4 - Create a book'
-    puts '5 - Create a rental'
-    puts '6 - List all rentals for a given person id'
-    puts '7 - Exit'
-    option = gets.chomp
-  end
-
-  if option.to_i == 5
-    app.create_rental
-    puts 'rental created'
-    puts 'Please choose an option by entering a number:'
-    puts '1 - List all books'
-    puts '2 - List all people'
-    puts '3 - Create a person'
-    puts '4 - Create a book'
-    puts '5 - Create a rental'
-    puts '6 - List all rentals for a given person id'
-    puts '7 - Exit'
-    option = gets.chomp
-  end
-
-  if option.to_i == 6
-    puts 'Enter a person id'
-    id = gets.chomp
-    app.list_all_rentals(id)
-    puts ''
-    puts 'Please choose an option by entering a number:'
-    puts '1 - List all books'
-    puts '2 - List all people'
-    puts '3 - Create a person'
-    puts '4 - Create a book'
-    puts '5 - Create a rental'
-    puts '6 - List all rentals for a given person id'
-    puts '7 - Exit'
-    option = gets.chomp
-  end
-
-  exit if option.to_i == 7
 end
+
+# Method to call the app
+def main_call
+  Main_app.new
+end
+
+# call the method to call the app
+main_call
