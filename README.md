@@ -1,10 +1,18 @@
-## Title
+# Project Name
 
 School Library
 
-## Description
+# Description
 
-This application enables students and teachers to add or rent books.
+This is a console app that enables students and teachers to add books and create rentals from the library.
+
+## Built With
+
+- Ruby
+
+## Getting Started
+
+run ruby main.rb in terminal
 
 ## Authors
 
@@ -13,6 +21,12 @@ This application enables students and teachers to add or rent books.
 - GitHub: [@jadibdev](https://github.com/jadibdev)
 - Twitter: [@MohamedJadib](https://twitter.com/MohamedJadib)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/mohamed-jadib-942a5041/)
+
+👤 **Chris Siku**
+
+- GitHub: [@githubhandle](https://github.com/Chrissiku)
+- Twitter: [@twitterhandle](https://twitter.com/christian_siku)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/christian-siku/)
 
 ## 🤝 Contributing
 
@@ -24,12 +38,6 @@ Feel free to check the [issues page](../../issues/).
 
 Give a ⭐️ if you like this project!
 
-## Acknowledgments
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
-
 ## 📝 License
 
-This project is [MIT](./MIT.md) licensed.
+This project is [MIT](./LICENSE) licensed.
