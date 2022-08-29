@@ -48,6 +48,19 @@ class App
     @people.push(teacher)
   end
 
+  def create_a_person
+    puts "Do you want to create a student (1) or a teacher (2)? [Input the number]:\n"
+    choice = gets.chomp
+    case choice
+    when '1'
+      create_a_student
+    when '2'
+      create_a_teacher
+    else
+      puts 'Invalid option [1 or 2]'
+    end
+  end
+
   def list_all_people
     puts 'There are currently no people! press 3 to create a person' if @people.empty?
     @people.map.with_index { |person, index| print "#{index}) Name: #{person.name} - Age: #{person.age}" }
@@ -74,6 +87,27 @@ class App
     rental = Rental.new(date, book, person)
     @rentals.push(rental)
   end
+
+  # def list_all_rentals
+  #   puts "\n"
+  #   if @rentals.empty?
+  #     puts 'No rent is registered in the library'
+  #   else
+  #     puts 'Select a person form the following list by ID'
+  #     @people.each do |person|
+  #       puts "ID : #{person.id} => #{person.name}"
+  #     end
+  #     puts "\n"
+  #     print "Enter person\'s ID :"
+  #     person = gets.chomp
+  #     puts "\n"
+  #     @rentals.each do |rental|
+  #       if rental.person.id.to_i == person.to_i
+  #         puts "Book \"#{rental.book.title}\" by : #{rental.book.author}"
+  #       end
+  #     end
+  #   end
+  # end
 
   def list_all_rentals(id)
     puts 'There is no id match' unless @rentals.include?(id)
