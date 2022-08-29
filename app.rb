@@ -9,14 +9,25 @@ class App
     @rentals = []
   end
 
+  # get user input method
+  def get_user_input(text, field)
+    puts text
+    field = gets.chomp
+    return field
+  end
+
+  # create class object method
+  def create_object(class_Name, store, *args)
+    class_Name.new(*args)
+    store.push(class_Name.new(*args))
+  end
+
+  # create book method
   def create_a_book
     puts 'Create a new book'
-    puts 'Enter a new title'
-    title = gets.chomp
-    puts 'Enter an author'
-    author = gets.chomp
-    book = Book.new(title, author)
-    @books.push(book)
+    title = get_user_input("Enter a new title", title)
+    author = get_user_input("Enter an author", author)
+    create_object(Book, @books, title, author)
   end
 
   def list_all_books
@@ -87,27 +98,6 @@ class App
     rental = Rental.new(date, book, person)
     @rentals.push(rental)
   end
-
-  # def list_all_rentals
-  #   puts "\n"
-  #   if @rentals.empty?
-  #     puts 'No rent is registered in the library'
-  #   else
-  #     puts 'Select a person form the following list by ID'
-  #     @people.each do |person|
-  #       puts "ID : #{person.id} => #{person.name}"
-  #     end
-  #     puts "\n"
-  #     print "Enter person\'s ID :"
-  #     person = gets.chomp
-  #     puts "\n"
-  #     @rentals.each do |rental|
-  #       if rental.person.id.to_i == person.to_i
-  #         puts "Book \"#{rental.book.title}\" by : #{rental.book.author}"
-  #       end
-  #     end
-  #   end
-  # end
 
   def list_all_rentals(id)
     puts 'There is no id match' unless @rentals.include?(id)
