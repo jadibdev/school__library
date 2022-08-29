@@ -73,8 +73,15 @@ class App
     @people.map.with_index { |person, index| print "#{index}) Name: #{person.name} - Age: #{person.age}" }
   end
 
+  def is_empty(store)
+    if store.empty?
+      false
+    end
+    true
+  end
+
   def create_rental
-    if @books.empty? && @people.empty?
+    if is_empty(@books) && is_empty(@people)
       puts 'There are no books or people'
       puts ''
     end
@@ -82,16 +89,16 @@ class App
     person = ''
     date = DateTime.now
 
-    unless @books.empty?
+    unless !is_empty(@books)
       list_all_books
       book = get_user_input("choose a book from above", book)
     end
 
-    unless @people.empty?
+    unless !is_empty(@people)
       list_all_people
       person = get_user_input("choose a person from above", person)
     end
-    
+
     create_object(Rental, @rentals, date, book, person)
   end
 
